@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.inscripcion.controller.InscripcionesController">
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10" />
+    </padding>
+    <top>
+        <VBox spacing="10">
+            <HBox spacing="10" alignment="CENTER">
+                <Label text="Estudiante:" />
+                <ComboBox fx:id="comboEstudiantes" promptText="Seleccione un estudiante" HBox.hgrow="ALWAYS" maxWidth="Infinity" />
+                <Label text="Curso:" />
+                <ComboBox fx:id="comboCursos" promptText="Seleccione un curso" HBox.hgrow="ALWAYS" maxWidth="Infinity" />
+                <Button text="Inscribir" onAction="#handleInscribir" />
+            </HBox>
+        </VBox>
+    </top>
+    <center>
+        <TabPane tabClosingPolicy="UNAVAILABLE">
+            <Tab text="Cursos del Estudiante">
+                <VBox spacing="10">
+                    <HBox alignment="CENTER_RIGHT">
+                        <Button text="Eliminar Inscripción" onAction="#handleEliminarInscripcionCurso" />
+                    </HBox>
+                    <TableView fx:id="tablaCursosEstudiante">
+                        <columns>
+                            <TableColumn fx:id="colCursoNombre" text="Nombre del Curso" prefWidth="200" />
+                            <TableColumn fx:id="colCursoCreditos" text="Créditos" prefWidth="100" />
+                        </columns>
+                        <placeholder>
+                            <Label text="No hay cursos inscritos para este estudiante" />
+                        </placeholder>
+                    </TableView>
+                </VBox>
+            </Tab>
+            <Tab text="Estudiantes del Curso">
+                <VBox spacing="10">
+                    <HBox alignment="CENTER_RIGHT">
+                        <Button text="Eliminar Inscripción" onAction="#handleEliminarInscripcionEstudiante" />
+                    </HBox>
+                    <TableView fx:id="tablaEstudiantesCurso">
+                        <columns>
+                            <TableColumn fx:id="colEstudianteNombre" text="Nombre del Estudiante" prefWidth="200" />
+                            <TableColumn fx:id="colEstudianteCorreo" text="Correo" prefWidth="200" />
+                        </columns>
+                        <placeholder>
+                            <Label text="No hay estudiantes inscritos en este curso" />
+                        </placeholder>
+                    </TableView>
+                </VBox>
+            </Tab>
+            <Tab text="Todas las Inscripciones">
+                <TableView fx:id="tablaInscripciones">
+                    <columns>
+                        <TableColumn fx:id="colInscripcionEstudiante" text="Estudiante" prefWidth="200" />
+                        <TableColumn fx:id="colInscripcionCurso" text="Curso" prefWidth="200" />
+                        <TableColumn fx:id="colInscripcionFecha" text="Fecha de Inscripción" prefWidth="150" />
+                    </columns>
+                    <placeholder>
+                        <Label text="No hay inscripciones registradas" />
+                    </placeholder>
+                </TableView>
+            </Tab>
+        </TabPane>
+    </center>
+</BorderPane>

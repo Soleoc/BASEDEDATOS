@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.inscripcion.controller.CursosController">
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10" />
+    </padding>
+    <top>
+        <VBox spacing="10">
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Buscar:" />
+                <TextField fx:id="txtBuscar" promptText="Nombre o créditos" HBox.hgrow="ALWAYS" />
+                <Button text="Buscar" onAction="#handleBuscar" />
+                <Button text="Mostrar Todos" onAction="#handleMostrarTodos" />
+            </HBox>
+        </VBox>
+    </top>
+    <center>
+        <SplitPane dividerPositions="0.6" orientation="HORIZONTAL">
+            <TableView fx:id="tablaCursos">
+                <columns>
+                    <TableColumn fx:id="colId" text="ID" />
+                    <TableColumn fx:id="colNombre" text="Nombre" />
+                    <TableColumn fx:id="colCreditos" text="Créditos" />
+                    <TableColumn fx:id="colCupoMaximo" text="Cupo Máximo" />
+                    <TableColumn fx:id="colInscritos" text="Inscritos" />
+                </columns>
+                <placeholder>
+                    <Label text="No hay cursos registrados" />
+                </placeholder>
+            </TableView>
+            <VBox spacing="10">
+                <padding>
+                    <Insets top="5" right="5" bottom="5" left="5" />
+                </padding>
+                <Label text="Datos del Curso" style="-fx-font-weight: bold;" />
+                <GridPane hgap="5" vgap="10">
+                    <padding>
+                        <Insets top="5" right="5" bottom="5" left="5" />
+                    </padding>
+                    
+                    <Label text="ID:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                    <TextField fx:id="txtId" editable="false" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+                    
+                    <Label text="Nombre:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                    <TextField fx:id="txtNombre" promptText="Nombre del curso" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+                    
+                    <Label text="Descripción:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+                    <TextArea fx:id="txtDescripcion" promptText="Descripción del curso" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+                    
+                    <Label text="Créditos:" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+                    <TextField fx:id="txtCreditos" promptText="Número de créditos" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+                    
+                    <Label text="Cupo Máximo:" GridPane.rowIndex="4" GridPane.columnIndex="0" />
+                    <TextField fx:id="txtCupoMaximo" promptText="Cupo máximo de estudiantes" GridPane.rowIndex="4" GridPane.columnIndex="1" />
+                </GridPane>
+                
+                <HBox spacing="10" alignment="CENTER">
+                    <Button text="Nuevo" onAction="#handleNuevo" />
+                    <Button text="Guardar" onAction="#handleGuardar" />
+                    <Button text="Eliminar" onAction="#handleEliminar" />
+                </HBox>
+            </VBox>
+        </SplitPane>
+    </center>
+</BorderPane>

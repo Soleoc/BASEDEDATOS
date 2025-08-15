@@ -1,0 +1,24 @@
+-- Ejemplo de creación de una base de datos y una tabla en SQL
+
+-- Crear la base de datos
+CREATE DATABASE EjemploDB;
+go
+
+-- Usar la base de datos creada
+USE EjemploDB;
+go
+
+-- Crear una tabla llamada 'Usuarios'
+CREATE TABLE Usuarios (
+    Id INT PRIMARY KEY AUTO_INCREMENT,
+    Nombre VARCHAR(50),
+    Correo VARCHAR(100),
+    FechaRegistro DATE
+);
+go
+
+-- Insertar algunos datos de ejemplo
+INSERT INTO Usuarios (Nombre, Correo, FechaRegistro) VALUES
+('Ana Pérez', 'ana.perez@email.com', '2024-06-01'),
+('Luis Gómez', 'luis.gomez@email.com', '2024-06-02');
+go

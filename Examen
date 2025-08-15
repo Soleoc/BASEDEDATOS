@@ -1,0 +1,80 @@
+CREATE DATABASE ExamenDSMG2;
+GO
+
+USE ExamenDSMG2;
+GO
+
+CREATE TABLE Clientes (
+    IDcliente INT PRIMARY KEY IDENTITY(1,1),
+    Nombre NVARCHAR(50) NOT NULL,
+    Apellido NVARCHAR(50) NOT NULL,
+    Correo NVARCHAR(100) NOT NULL UNIQUE,
+    FechaRegistro DATE DEFAULT GETDATE(),
+    Sexo CHAR(1) CHECK (Sexo IN ('M', 'F', 'O')),
+);
+GO
+
+
+CREATE TABLE Membresias (
+    IDmembresia INT PRIMARY KEY IDENTITY(1,1),
+    NombreMembresia NVARCHAR(50) NOT NULL,
+    DuracionDias INT NOT NULL,
+    CostoMensual DECIMAL(10,2) NOT NULL
+);
+GO
+
+CREATE TABLE Entrenadores (
+    IDentrenador INT PRIMARY KEY IDENTITY(1,1),
+    Nombre NVARCHAR(50) NOT NULL,
+    Especialidad NVARCHAR(100) NOT NULL,
+    Correo NVARCHAR(100) NOT NULL UNIQUE,
+);
+GO
+
+CREATE TABLE Clases (
+    IDclase INT PRIMARY KEY IDENTITY(1,1),
+    NombreClase NVARCHAR(50) NOT NULL,
+    HoraInicio TIME(7) NOT NULL,
+    HoraFin TIME(7) NOT NULL,
+    IDentrenador INT NOT NULL,
+    FOREIGN KEY (IDentrenador) REFERENCES Entrenadores(IDentrenador),
+    FOREIGN KEY (IDclase) REFERENCES Clases(IDclase)
+);
+GO
+
+CREATE TABLE ClientesMembresias (
+    IDcliente INT,
+    IDmembresia INT,
+    FechaInicio DATE NOT NULL,
+    FechaFin DATE NOT NULL,
+    PRIMARY KEY (IDcliente, IDmembresia),
+    FOREIGN KEY (IDcliente) REFERENCES Clientes(IDcliente),
+    FOREIGN KEY (IDmembresia) REFERENCES Membresias(IDmembresia)
+);
+GO
+
+CREATE TABLE ClientesCLases (
+IDcliente INT,
+    IDclase INT,
+    PRIMARY KEY (IDcliente, IDclase),
+    FOREIGN KEY (IDcliente) REFERENCES Clientes(IDcliente),
+    FOREIGN KEY (IDclase) REFERENCES Clases(IDclase)
+);
+GO
+
+ CREATE TABLE Equipos(
+    IDequipo INT PRIMARY KEY IDENTITY(1,1),
+    NombreEquipo NVARCHAR(50) NOT NULL,
+    Estado NVARCHAR(30) CHECK NOT NULL,
+    FechaCompra DATE NOT NULL,
+ );
+GO
+
+CREATE TABLE ClasesEquipos (
+    IDclase INT,
+    IDequipo INT,
+    CantidadUsada INT CHECK(CantidadUsada in(>0)) NOT NULL,
+    PRIMARY KEY (IDequipo, IDclase),
+    FOREIGN KEY (IDequipo) REFERENCES Equipos(IDequipo),
+    FOREIGN KEY (IDclase) REFERENCES Clases(IDclase)
+);
