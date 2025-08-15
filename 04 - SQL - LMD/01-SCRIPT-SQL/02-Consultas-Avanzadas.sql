@@ -224,3 +224,12 @@ end;
 exec  sp_pruebaconsulta '1989-01-01', '1989-04-06';
 select * from Pedidos;
 --cual es el rango de las cuotas asignadas de cada oficina (ciudad)
+
+--FALTA--
+
+/*
+ 2) SELECCIONAR LOS PRODUCTOS POR CATEGORIA MAS VENDIDOS (UNIDADES),
+    ENVIADOS ALEMANIA ORDENADOS POR CATEGORIA ASC Y DENTRO DE CATEGORIA
+	POR UNIDAD DE FORMA DESC
+*/
+
